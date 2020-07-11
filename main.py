@@ -103,7 +103,7 @@ class ticketSystem(object):
         :return: Item deleted from Queue.
         """
         if self.isEmptyQ(windowId):
-            return "Sorry!!! The queue is empty."
+            return -1
         else:
             person = self.queues[windowId - 1][0]
             del self.queues[windowId - 1][0]
@@ -217,30 +217,40 @@ def split_input_line(input):
 if __name__ == "__main__":
     output = open("outputPS1.txt", "a")
     # TODO: Ask for input file. Use try cache to handle the exception if file is not available.
-    with open("inputPS1.txt") as f:
-        for line in f:
-            val = split_input_line(line)
-            res = None
-            final_output = None
-            if line.startswith('ticketSystem'):
-                obj = ticketSystem(val[0], val[1])
-            elif line.startswith('isOpen'):
-                res = obj.isOpen(val)
-                final_output = line.strip() + " >> " + str(res)
-            elif line.startswith('getWindow'):
-                res = obj.getWindow(val)
-                final_output = line.strip() + " >> " + str(res)
-            elif line.startswith('addPerson'):
-                res = obj.addPerson(val)
-                final_output = line.strip() + " >> " + str(res)
-            elif line.startswith('giveTicket'):
-                res = obj.giveTicket()
-                final_output = line.strip() + " >> " + str(res)
-            else:
-                print('Wrong Input!!!')
-            if res:
-                # Writing result into output file.
-                output.write(final_output + '\n')
+    try:
+        input_file = input("Enter Input file name located in current "
+                           "directory(e.g. inputPS1.txt): ").strip()
 
-    f.close()
-    output.close()
+        with open(input_file) as f:
+            for line in f:
+                val = split_input_line(line)
+                res = None
+                final_output = None
+                if line.startswith('ticketSystem'):
+                    obj = ticketSystem(val[0], val[1])
+                elif line.startswith('isOpen'):
+                    res = obj.isOpen(val)
+                    final_output = line.strip() + " >> " + str(res)
+                elif line.startswith('getWindow'):
+                    res = obj.getWindow(val)
+                    final_output = line.strip() + " >> " + str(res)
+                elif line.startswith('addPerson'):
+                    res = obj.addPerson(val)
+                    final_output = line.strip() + " >> " + str(res)
+                elif line.startswith('giveTicket'):
+                    res = obj.giveTicket()
+                    final_output = line.strip() + " >> " + str(res)
+                else:
+                    print('Wrong Input!!!')
+                if res:
+                    # Writing result into output file.
+                    output.write(final_output + '\n')
+
+        f.close()
+        output.close()
+        print('Execution of input file is completed. '
+              'Please find `outputPS1.txt` for execution result.')
+
+    except NameError:
+        print('ERROR!!!\n\tEntered file is not available in this directory.'
+              'Please provide valid input file.')
