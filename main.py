@@ -34,7 +34,10 @@ class ticketSystem(object):
         windowInfo = [item for item in self.queues[windowId - 1] if
                       item is not None]
 
-        return windowInfo
+        if windowInfo:
+            return windowInfo
+        else:
+            return "[]"
 
     def isOpen(self, windowId):
         """
@@ -55,7 +58,7 @@ class ticketSystem(object):
         window = self.eligibleQueueforInsert()
 
         if window == -1:
-            return "all queues are full"
+            return "Sorry !!! The queue is Full."
         else:
             # add person performfed through Queue operation
             # it accepts personId and which Window to add
@@ -215,8 +218,8 @@ def split_input_line(input):
 # Input and Output part is working fine. No more changes required.
 # If any changes requires highlight on particular line.
 if __name__ == "__main__":
+    open("outputPS1.txt", 'w').close()
     output = open("outputPS1.txt", "a")
-    # TODO: Ask for input file. Use try cache to handle the exception if file is not available.
     try:
         input_file = input("Enter Input file name located in current "
                            "directory(e.g. inputPS1.txt): ").strip()
