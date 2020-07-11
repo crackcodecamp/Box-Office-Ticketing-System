@@ -6,23 +6,14 @@ Group No. 145
 
 class ticketSystem(object):
 
-    # Implementation of queue data structure.
     def __init__(self, w, n):
-        '''
-        Intial Defeination
+        """
+        Implementation of queue data structure.
 
-        Parameters
-        ----------
-        w : int
-            Number of Windows.
-        n : int
-            Queue Length.
+        :param w: Number of Windows
+        :param n: Number of persons in each window
+        """
 
-        Returns
-        -------
-        None.
-
-        '''
         self.n = n
         self.w = w
 
@@ -32,8 +23,6 @@ class ticketSystem(object):
         self.size = [0 for i in range(w)]
         self.open = [False for i in range(w)]
         self.open[0] = True
-        # self.pivot = 1 # This field always holds the next
-        # value delete/issue from this window
 
     def getWindow(self, windowId):
         """
@@ -111,10 +100,10 @@ class ticketSystem(object):
         Performing dequeue operation for the queue.
 
         :param windowId: Item to remove from which Window.
-        :return: Item deleted from Queue. -1 if  Queue is empty
+        :return: Item deleted from Queue.
         """
         if self.isEmptyQ(windowId):
-            return -1
+            return "Sorry!!! The queue is empty."
         else:
             person = self.queues[windowId - 1][0]
             del self.queues[windowId - 1][0]
@@ -220,7 +209,7 @@ def split_input_line(input):
     elif len(value) == 2 and value[-1]:
         return int(value[-1])
     else:
-        return 'Invalid Line'
+        return 'Invalid Input'
 
 
 # Input and Output part is working fine. No more changes required.
