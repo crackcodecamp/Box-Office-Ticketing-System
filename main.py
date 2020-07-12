@@ -2,6 +2,7 @@
 Assignment 1 - PS1 - [Box Office]
 Group No. 145
 """
+import time
 
 
 class ticketSystem(object):
@@ -35,8 +36,12 @@ class ticketSystem(object):
                       item is not None]
 
         if windowInfo:
+            print("No. of persons in queue for window " + str(windowId) +
+                  " is: " + str(windowInfo))
             return windowInfo
         else:
+            print("None of the persons in queue for window "
+                  + str(windowId))
             return "[]"
 
     def isOpen(self, windowId):
@@ -46,7 +51,11 @@ class ticketSystem(object):
         :param windowId: Window number
         :return: True or False
         """
-        return self.open[windowId - 1]
+        # print("Window " + str(self.open[windowId-1]) + " is open.")
+        if self.open[windowId - 1]:
+            return self.open[windowId - 1]
+        else:
+            return "False"
 
     def addPerson(self, personId):
         """
@@ -63,7 +72,7 @@ class ticketSystem(object):
             # add person performfed through Queue operation
             # it accepts personId and which Window to add
             self.enqueue(personId, window)
-
+            print("Added person to the queue of window: " + str(window))
             return "w" + str(window)
 
     def giveTicket(self):
@@ -82,8 +91,9 @@ class ticketSystem(object):
             if res != -1:
                 ticketCounter += 1
         if ticketCounter == 0:
-            return "Queue is Empty"
+            return "Queue is Empty."
         else:
+            print("No. of Ticker Issued: " + str(ticketCounter))
             return str(ticketCounter)
 
     def enqueue(self, personId, window):
@@ -218,6 +228,8 @@ def split_input_line(input):
 # Input and Output part is working fine. No more changes required.
 # If any changes requires highlight on particular line.
 if __name__ == "__main__":
+    print("\n ++++++++++ Welcome To Box Office Ticket System ++++++++++++ \n")
+    start = time.time()
     open("outputPS1.txt", 'w').close()
     output = open("outputPS1.txt", "a")
     try:
@@ -226,11 +238,15 @@ if __name__ == "__main__":
 
         with open(input_file) as f:
             for line in f:
+                print("\n--------------------------------------------\n" + line)
                 val = split_input_line(line)
                 res = None
                 final_output = None
                 if line.startswith('ticketSystem'):
                     obj = ticketSystem(val[0], val[1])
+                    print('Ticket System is created contains ' + str(val[0]) +
+                          ' windows and each window have max ' + str(val[1]) +
+                          ' person capacity.\n')
                 elif line.startswith('isOpen'):
                     res = obj.isOpen(val)
                     final_output = line.strip() + " >> " + str(res)
@@ -242,18 +258,25 @@ if __name__ == "__main__":
                     final_output = line.strip() + " >> " + str(res)
                 elif line.startswith('giveTicket'):
                     res = obj.giveTicket()
+                    # print('Number of Ticket Issued : ' + str(res))
                     final_output = line.strip() + " >> " + str(res)
                 else:
                     print('Wrong Input!!!')
                 if res:
                     # Writing result into output file.
+                    print(final_output)
                     output.write(final_output + '\n')
 
         f.close()
         output.close()
-        print('Execution of input file is completed. '
+        print('\nExecution of input file is completed. '
               'Please find `outputPS1.txt` for execution result.')
 
     except NameError:
         print('ERROR!!!\n\tEntered file is not available in this directory.'
               'Please provide valid input file.')
+
+    end = time.time()
+
+    timeTaken = end - start
+    print('\nTotal Execution Time : ' + str(timeTaken) + ' sec')
