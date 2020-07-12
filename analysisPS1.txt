@@ -1,9 +1,274 @@
-Analysis of the time complexity for whole execution of the program:
+* Analysis of the time complexity for whole execution of the program:
 - The best case is: Ω(n log(n))
 - The average case is: Θ(n log(n))
 - The worst case is: O(n^2)
 
-The time complexity for insertion(i.e. addPerson) is O(1)𝑂(1),
+* The time complexity for insertion(i.e. addPerson) is O(1)𝑂(1),
 while deletion(i.e. giveTicket) is O(n)𝑂(𝑛) (in the worst case) for a single operation.
 The amortized costs for both are O(1)𝑂(1) since having to delete n*w elements
 from the queue still takes O(n)𝑂(w) time.
+
+* Performance with respective different input values,
+Typical Input Instructions:
+ticketSystem:3:6
+addPerson:1
+addPerson:2
+addPerson:3
+addPerson:4
+addPerson:5
+getWindow:1
+getWindow:2
+isOpen:1
+isOpen:2
+addPerson:6
+addPerson:7
+addPerson:8
+addPerson:9
+addPerson:10
+addPerson:11
+addPerson:12
+addPerson:13
+addPerson:14
+addPerson:15
+addPerson:16
+addPerson:17
+addPerson:18
+getWindow:1
+getWindow:2
+getWindow:3
+giveTicket:
+giveTicket:
+giveTicket:
+getWindow:1
+getWindow:2
+getWindow:3
+----------------------------------
+* Tabular format for different combination of Window and Queue size :
+
+
+|-------------------------------------------------------------------------|
+|Number Of Function Calls  |Queue Size |Window Size	|Timetaken            |
+|-------------------------------------------------------------------------|
+|180                       |6	       |  3	        |0.00104403495788574  |
+|183                       |8	       |  4	        |0.00102114677429199  |
+|189                       |10	       |  5	        |0.00101089477539062  |
+|196                       |12	       |  6	        |0.00199484825134277  |
+|203                       |14	       |  7	        |0.00199413299560546  |
+|210                       |16	       |  8	        |0.00199484825134277  |
+|218                       |18	       |  9	        |0.00199341773986816  |
+|230                       |20	       |  10        |0.00333952903747558  |
+--------------------------------------------------------------------------|
+
+* For Graphical representation: Please refer  analysisPS1.pdf files in the
+located in same repo.
+
+
+* Overall analysis :
+As the input size increases processing time also increased.
+Which indirectly denotes , more loop instructions has to perform as the
+input size increases.
+Even we could able to see number of methods/ function calls has been increased
+as input size increases. Which intern tells the for larger input size it is
+executing more instructions.
+
+* Typical execution call coverage for the whole executions for windows 5 and Queue 10:
+
+aghodake@MacBook-Pro:~/WILP/SEM I/Data structure and algorithm/Box-Office-Ticketing-System|master⚡
+⇒  python main.py
+
+ ++++++++++ Welcome To Box Office Ticket System ++++++++++++
+
+Enter Input file name located in current directory(e.g. inputPS1.txt): promptsPS1.txt
+
+--------------------------------------------
+ticketSystem:3:6
+
+Ticket System is created contains 3 windows and each window have max 6 person capacity.
+
+
+--------------------------------------------
+addPerson:1
+
+Added person to the queue of window: 1
+addPerson:1 >> w1
+
+--------------------------------------------
+addPerson:2
+
+Added person to the queue of window: 1
+addPerson:2 >> w1
+
+--------------------------------------------
+addPerson:3
+
+Added person to the queue of window: 1
+addPerson:3 >> w1
+
+--------------------------------------------
+addPerson:4
+
+Added person to the queue of window: 1
+addPerson:4 >> w1
+
+--------------------------------------------
+addPerson:5
+
+Added person to the queue of window: 1
+addPerson:5 >> w1
+
+--------------------------------------------
+getWindow:1
+
+No. of persons in queue for window 1 is: [1, 2, 3, 4, 5]
+getWindow:1 >> [1, 2, 3, 4, 5]
+
+--------------------------------------------
+getWindow:2
+
+None of the persons in queue for window 2
+getWindow:2 >> []
+
+--------------------------------------------
+isOpen:1
+
+isOpen:1 >> True
+
+--------------------------------------------
+isOpen:2
+
+isOpen:2 >> False
+
+--------------------------------------------
+addPerson:6
+
+Added person to the queue of window: 1
+addPerson:6 >> w1
+
+--------------------------------------------
+addPerson:7
+
+Added person to the queue of window: 2
+addPerson:7 >> w2
+
+--------------------------------------------
+addPerson:8
+
+Added person to the queue of window: 2
+addPerson:8 >> w2
+
+--------------------------------------------
+addPerson:9
+
+Added person to the queue of window: 2
+addPerson:9 >> w2
+
+--------------------------------------------
+addPerson:10
+
+Added person to the queue of window: 2
+addPerson:10 >> w2
+
+--------------------------------------------
+addPerson:11
+
+Added person to the queue of window: 2
+addPerson:11 >> w2
+
+--------------------------------------------
+addPerson:12
+
+Added person to the queue of window: 2
+addPerson:12 >> w2
+
+--------------------------------------------
+addPerson:13
+
+Added person to the queue of window: 3
+addPerson:13 >> w3
+
+--------------------------------------------
+addPerson:14
+
+Added person to the queue of window: 3
+addPerson:14 >> w3
+
+--------------------------------------------
+addPerson:15
+
+Added person to the queue of window: 3
+addPerson:15 >> w3
+
+--------------------------------------------
+addPerson:16
+
+Added person to the queue of window: 3
+addPerson:16 >> w3
+
+--------------------------------------------
+addPerson:17
+
+Added person to the queue of window: 3
+addPerson:17 >> w3
+
+--------------------------------------------
+addPerson:18
+
+Added person to the queue of window: 3
+addPerson:18 >> w3
+
+--------------------------------------------
+getWindow:1
+
+No. of persons in queue for window 1 is: [1, 2, 3, 4, 5, 6]
+getWindow:1 >> [1, 2, 3, 4, 5, 6]
+
+--------------------------------------------
+getWindow:2
+
+No. of persons in queue for window 2 is: [7, 8, 9, 10, 11, 12]
+getWindow:2 >> [7, 8, 9, 10, 11, 12]
+
+--------------------------------------------
+getWindow:3
+
+No. of persons in queue for window 3 is: [13, 14, 15, 16, 17, 18]
+getWindow:3 >> [13, 14, 15, 16, 17, 18]
+
+--------------------------------------------
+giveTicket:
+
+No. of Ticker Issued: 3
+giveTicket: >> 3
+
+--------------------------------------------
+giveTicket:
+
+No. of Ticker Issued: 3
+giveTicket: >> 3
+
+--------------------------------------------
+giveTicket:
+
+No. of Ticker Issued: 3
+giveTicket: >> 3
+
+--------------------------------------------
+getWindow:1
+
+No. of persons in queue for window 1 is: [4, 5, 6]
+getWindow:1 >> [4, 5, 6]
+
+--------------------------------------------
+getWindow:2
+
+No. of persons in queue for window 2 is: [10, 11, 12]
+getWindow:2 >> [10, 11, 12]
+
+--------------------------------------------
+getWindow:3
+No. of persons in queue for window 3 is: [16, 17, 18]
+getWindow:3 >> [16, 17, 18]
+
+Execution of input file is completed. Please find `outputPS1.txt` for execution result.
+
+Total Execution Time : 7.537102699279785 sec
