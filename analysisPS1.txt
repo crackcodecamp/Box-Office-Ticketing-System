@@ -1,0 +1,9 @@
+Analysis of the time complexity for whole execution of the program:
+- The best case is: Ω(n log(n))
+- The average case is: Θ(n log(n))
+- The worst case is: O(n^2)
+
+The time complexity for insertion(i.e. addPerson) is O(1)𝑂(1),
+while deletion(i.e. giveTicket) is O(n)𝑂(𝑛) (in the worst case) for a single operation.
+The amortized costs for both are O(1)𝑂(1) since having to delete n*w elements
+from the queue still takes O(n)𝑂(w) time.
